@@ -1,0 +1,8 @@
+.vscode
+.env
+node_modules/
+db/schema.sql
+/dummy
+dummyData.js
+./middlewares/multer.js
+ 
