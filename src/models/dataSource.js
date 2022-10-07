@@ -1,7 +1,7 @@
 const { DataSource } = require("typeORM");
 
 const database = new DataSource({
-  type: process.env.TYPEORM_TYPE,
+  type: process.env.TYPEORM_CONNECTION,
   host: process.env.TYPEORM_HOST,
   port: process.env.TYPEORM_PORT,
   username: process.env.TYPEORM_USERNAME,

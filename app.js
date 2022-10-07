@@ -6,6 +6,7 @@ const morgan = require("morgan");
 
 const routes = require("./src/routes");
 const { database } = require("./src/models");
+const { ApiError, globalErrorHandler } = require("./src/utils");
 
 const PORT = process.env.PORT;
 
@@ -19,6 +20,16 @@ app.use(routes);
 app.get("/ping", (req, res, next) => {
   res.status(200).json({ message: "pong" });
 });
+
+app.all("*", (req, res, next) => {
+  const err = ApiError.notFoundError(
+    `Can't fine '${req.originalUrl}' on this server or your '${req.method}' method is incorrect!`
+  );
+
+  res.status(err.statusCode).json({ message: err.message });
+});
+
+app.use(globalErrorHandler);
 
 const start = async () => {
   await database
