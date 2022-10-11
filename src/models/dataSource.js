@@ -9,4 +9,4 @@ const dataSource = new DataSource({
   database: process.env.TYPEORM_DATABASE,
 });
 
-module.exports = dataSource;
+module.exports = database;
