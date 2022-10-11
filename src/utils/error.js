@@ -2,7 +2,7 @@ const catchAsync = (asyncFn) => {
   return async (req, res, next) => {
     try {
       await asyncFn(req, res, next);
-    } 
+    }
     catch (err) {
       next(err);
     }
@@ -27,6 +27,15 @@ class ApiError {
   }
 };
 
+const affectedRowsErrorHandler = async (result) => {
+  if (result.affectedRows !== 1) {
+    const error = new Error('WRONG_INPUT_REQUEST');
+    error.statusCode = 400;
+
+    throw error;
+  }
+};
+
 const globalErrorHandler = (err, req, res) => {
   if (err instanceof ApiError) res.status(err.statusCode).json(err.message);
   err = ApiError.internalError("INTERNAL_SERVER_ERROR");
@@ -37,4 +46,5 @@ module.exports = {
   catchAsync,
   ApiError,
   globalErrorHandler,
+  affectedRowsErrorHandler,
 };

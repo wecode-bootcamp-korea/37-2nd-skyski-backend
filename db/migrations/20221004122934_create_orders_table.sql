@@ -10,3 +10,19 @@ CREATE TABLE orders (
 
 -- migrate:down
 DROP TABLE orders;
+
+ let statementWhere = 'WHERE po.stock != 0';
+
+  if (size !== undefined)
+    statementWhere += ` AND s.foot_size IN(` + String(size) + `)`;
+  if (color !== undefined)
+    statementWhere += ` AND c.id IN(` + String(color) + `)`;
+  if (brand !== undefined)
+    statementWhere += ` AND b.id IN(` + String(brand) + `)`;
+  if (size === undefined && color === undefined && brand === undefined) {
+    statementWhere = '';
+  }
+
+  if (sort !== undefined) {
+    sort += ` ,p.id desc`;
+  } else sort = `releaseDate desc ,p.id desc`;
