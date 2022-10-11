@@ -8,6 +8,7 @@ CREATE TABLE hotels (
     longitude decimal(8, 5) not null,
     region_id int not null,
     user_id int not null,
+    price int not null,
     CONSTRAINT user_id_fkey foreign key (user_id) references users (id),
     CONSTRAINT regionn_id_fkey foreign key (region_id) references regions (id)
 )
