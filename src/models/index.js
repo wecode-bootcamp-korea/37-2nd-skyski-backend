@@ -1,5 +1,7 @@
-const database = require("./dataSource");
+const dataSource = require("./dataSource");
+const hotelDao = require("./hotelDao");
 
 module.exports = {
-  database,
+  dataSource,
+  hotelDao,
 };

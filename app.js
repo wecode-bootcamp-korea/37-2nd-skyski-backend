@@ -5,7 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const routes = require("./src/routes");
-const { database } = require("./src/models");
+const { dataSource } = require("./src/models");
 const { ApiError, globalErrorHandler } = require("./src/utils");
 
 const PORT = process.env.PORT;
@@ -32,7 +32,7 @@ app.all("*", (req, res, next) => {
 app.use(globalErrorHandler);
 
 const start = async () => {
-  await database
+  await dataSource
     .initialize()
     .then(() => {
       console.log("Data Source has been initialized!");
