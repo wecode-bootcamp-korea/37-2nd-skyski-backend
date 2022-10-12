@@ -1,21 +1,16 @@
 const { searchService } = require('../services');
-const { catchAsync } = require('../utils/error');
+const { catchAsync, ApiError } = require('../utils');
 
 const getKeyword = catchAsync(async (req, res) => {
-  // const {
-  //   departureRegion, arrivalRegion, flightDepartureDate, flightArrivalDate, flightSeatClass, personnel, type,
-  //   departTime, arriveTime, duration, airline, eco,
-  //   sort, limit, offset } = req.query;
-  const { limit, offset } = req.query
 
-  if (!limit || !offset) { //페이지네이션을 위해 
+  const { limit } = req.query
 
-    const err = new Error('QUERYSTRING_OMITTED');
-    err.statusCode = 400;
-    throw err;
-  }
+  if (!limit) {
+    const err = ApiError.keyError("QUERYSTRING_OMITTED")
+    res.status(err.statusCode).json({ message: err.message })
+  };
 
-  const getKeyword = await searchService.getKeyword(req.query, +limit, +offset);
+  const getKeyword = await searchService.getKeyword(req.params, req.query, +limit);
 
   res.status(200).send({ list: getKeyword });
 });

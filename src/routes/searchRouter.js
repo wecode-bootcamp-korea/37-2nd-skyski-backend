@@ -1,6 +1,7 @@
 const searchRouter = require('express').Router();
 const { searchController } = require('../controllers');
 
-searchRouter.get('', searchController.getKeyword);
+searchRouter.get('/pd', searchController.getKeyword);
+searchRouter.get('/wb/:departure/:arrival/:departureDate/:arrivalDate/:flightSeatClass', searchController.getKeyword);
 
 module.exports = searchRouter;
