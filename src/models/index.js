@@ -1,9 +1,9 @@
 const database = require("./dataSource");
-const searchDao = require('./searchDao');
+const flightDao = require('./flightDao');
 
 module.exports = {
   database,
-  searchDao
+  flightDao
 };
 
 

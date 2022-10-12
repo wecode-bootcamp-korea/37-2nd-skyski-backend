@@ -1,5 +1,5 @@
-const searchController = require('./searchController');
+const flightController = require('./flightController');
 
 module.exports = {
-  searchController
+  flightController
 };

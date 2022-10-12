@@ -1,6 +1,6 @@
-const searchService = require('./searchService');
+const flightService = require('./flightService');
 
 
 module.exports = {
-  searchService
+  flightService
 };

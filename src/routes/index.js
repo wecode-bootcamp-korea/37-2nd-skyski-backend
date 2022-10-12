@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const searchRouter = require('./searchRouter');
+const flightRouter = require('./flightRouter');
 
-router.use('/filter', searchRouter);
+router.use('/flights', flightRouter);
 
 module.exports = router;

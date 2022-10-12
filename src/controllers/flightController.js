@@ -1,7 +1,7 @@
-const { searchService } = require('../services');
+const { flightService } = require('../services');
 const { catchAsync, ApiError } = require('../utils');
 
-const getKeyword = catchAsync(async (req, res) => {
+const getFlights = catchAsync(async (req, res) => {
 
   const { limit } = req.query
 
@@ -10,12 +10,12 @@ const getKeyword = catchAsync(async (req, res) => {
     res.status(err.statusCode).json({ message: err.message })
   };
 
-  const getKeyword = await searchService.getKeyword(req.params, req.query, +limit);
+  const getFlights = await flightService.getFlights(req.query, +limit);
 
-  res.status(200).send({ list: getKeyword });
+  res.status(200).send(getFlights);
 });
 
 
 module.exports = {
-  getKeyword
+  getFlights
 }
