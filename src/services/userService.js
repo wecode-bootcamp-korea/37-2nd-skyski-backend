@@ -40,7 +40,7 @@ const getKakao = async (client_id, redirect_uri, code) => {
     await userDao.createUserByKakao(id, email);
   }
 
-  return jwt.sign({ kakao_id: user.kakao_id }, process.env.JMT_SECRET);
+  return jwt.sign({ kakao_id: user.kakaoId }, process.env.JWT_KEY);
 };
 
 module.exports = {

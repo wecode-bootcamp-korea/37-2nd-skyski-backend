@@ -1,4 +1,4 @@
-const { dataSource } = require("./dataSource");
+const dataSource = require("./dataSource");
 const userDao = require("./userDao");
 const hotelDao = require("./hotelDao");
 
