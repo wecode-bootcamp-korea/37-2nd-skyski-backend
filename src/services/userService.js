@@ -34,11 +34,10 @@ const getKakao = async (client_id, redirect_uri, code) => {
   const email = userInfo.data.kakao_account.email;
 
   if (!id || !email) throw ApiError.keyError("KEY_ERROR");
+  
   const [user] = await userDao.getUserbyId(id);
 
-  if (!user) {
-    await userDao.createUserByKakao(id, email);
-  }
+  if (!user) await userDao.createUserByKakao(id, email);
 
   return jwt.sign({ kakao_id: user.kakaoId }, process.env.JWT_KEY);
 };
